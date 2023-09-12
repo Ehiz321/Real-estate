@@ -1,25 +1,28 @@
-import logo from './logo.svg';
-import './App.css';
+import { Suspense, useState } from 'react'
+import { Outlet } from 'react-router-dom'
+import ConditionalBar from './components/ConditionalBar'
+import { useLocation } from 'react-router-dom'
+import { RouterProvider, createBrowserRouter } from 'react-router-dom'
+import { AppContextProvider } from './context/AppContext'
 
-function App() {
+function App({ router }) {
+  const [user, setUser] = useState('')
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    <>
+      <AppContextProvider value={{
+        user,
+        setUser
+      }}>
+        <RouterProvider router={router} />
+      </AppContextProvider>
+    </>
+  )
 }
 
-export default App;
+export default App
+
+// {/* <ConditionalBar location={location} />
+// <Suspense fallback={<div>Loading...</div>}>
+//   <Outlet />
+// </Suspense> */}
