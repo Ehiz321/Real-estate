@@ -14,16 +14,18 @@ import vaction from '../../assets/icons/vacation.svg'
 import seller from '../../assets/icons/seller.svg'
 import tours from '../../assets/icons/tours.svg'
 import sales from '../../assets/icons/sales.svg'
+import arrowRight from '../../assets/icons/arrow-right.svg'
 import check from '../../assets/icons/check.svg'
 import PrimaryButton from '../../components/ui/PrimaryButton'
 import HouseItem from '../../components/ui/HouseItem'
 import Input from '../../components/ui/Input'
 import TextField from '../../components/ui/TextField'
 import AccordionList from '../../components/ui/AccordionList'
+import Footer from '../../layout/Footer'
 const Homepage = () => {
   return (
     <>
-      <div>
+      <div className='mb-16'>
         <div className='px-20 max-[500px]:px-2'>
           <div className='flex flex-col items-center justify-between max-[500px]:px-2'>
             <div className='flex flex-col items-center w-[68%] mb-20 max-[500px]:w-full'>
@@ -48,20 +50,20 @@ const Homepage = () => {
                 </Link>
               </div>
             </div>
-            <img src={group1} alt='' className='mt-20' />
+            <img src={group1} alt='' className='mt-20 max-[500px]:mt-0' />
           </div>
 
-          <div className='flex flex-col items-center justify-between mt-20 w-full'>
+          <div className='flex flex-col items-center justify-between mt-20 w-full max-[500px]:mt-10'>
             <div className='w-full'>
-              <p className='text-[20px] font-semibold text-primary300 my-2 text-center max-[500px]:text-[8px]'>
+              <p className='text-[20px] font-semibold text-primary300 my-2 text-center max-[500px]:text-[9px]'>
                 Our Services
               </p>
-              <h2 className='text-[50px] font-semibold my-2 text-center max-[500px]:text-[15px]'>
+              <h2 className='text-[50px] font-semibold my-2 text-center max-[500px]:text-[17px]'>
                 What to expect from{' '}
                 <span className='text-primary300'>Turfind</span>
               </h2>
             </div>
-            <div className='flex items-center justify-between w-full my-20 max-[500px]:flex-col max-[500px]:px-3'>
+            <div className='flex items-center justify-between w-full my-20 max-[500px]:flex-col max-[500px]:px-3 max-[500px]:my-8'>
               <div className='w-[26%] max-[500px]:w-[100%]'>
                 <div className=' flex flex-col items-center text-center mb-10'>
                   <img src={buyHome} />
@@ -94,7 +96,7 @@ const Homepage = () => {
                   </p>
                 </div>
               </div>
-              <img src={iPhone14a} className='max-[500px]:hidden' />
+              <img src={iPhone14a} className='max-[500px]:order-last' alt='' />
               <div className='w-[26%] max-[500px]:w-[100%]'>
                 <div className=' flex flex-col items-center text-center mb-10'>
                   <img src={seller} />
@@ -127,11 +129,10 @@ const Homepage = () => {
                   </p>
                 </div>
               </div>
-              <img src={iPhone14a} className='max-[500px]:block' />
             </div>
           </div>
 
-          <div className='flex items-center justify-between my-28 max-[500px]:flex-col max-[500px]:items-start'>
+          <div className='flex items-center justify-between my-28 max-[500px]:flex-col max-[500px]:items-start max-[500px]:my-12'>
             <div className='w-[60%] max-[500px]:w-full'>
               <div className='mb-4'>
                 <h2 className='text-[50px] font-bold max-[500px]:text-[15px]'>
@@ -221,9 +222,9 @@ const Homepage = () => {
                 We’ll Help You Find the Perfect Home
               </h2>
             </div>
-            <p>icon</p>
+            <img src={arrowRight} alt='' className='max-[500px]:w-7 h-5' />
           </div>
-          <div className='flex flex-wrap justify-between mt-10'>
+          <div className='flex flex-wrap justify-between mt-10 max-[500px]:mt-3'>
             <HouseItem
               divSize={'w-[32%] h-[400px] max-[500px]:w-full max-[500px]:'}
               textColor={'text-white'}
@@ -247,13 +248,13 @@ const Homepage = () => {
         <div className='px-20 mt-52 max-[500px]:px-0'>
           <div className='bg-primary200 rounded-[20px] w-full h-full flex flex-col items-center justify-center px-40 py-10 max-[500px]:px-0'>
             <div className='w-[89%]'>
-              <p className='text-[20px] font-semibold text-primary300 my-4 text-center max-[500px]:text-[7px]'>
+              <p className='text-[20px] font-semibold text-primary300 my-4 text-center max-[500px]:text-[7px] max-[500px]:my-2'>
                 Get in Touch
               </p>
-              <h3 className='text-[50px] leading-[55px] font-semibold my-4 text-center max-[500px]:text-[12px]'>
+              <h3 className='text-[50px] font-semibold my-4 text-center max-[500px]:text-[12px] max-[500px]:my-2'>
                 Contact Us
               </h3>
-              <p className='text-[18px] font-medium my-4 text-secondaryColor text-center max-[500px]:text-[7px]'>
+              <p className='text-[18px] font-medium my-4 text-secondaryColor text-center max-[500px]:text-[7px] max-[500px]:my-2'>
                 We are available 24/7 to answer all your questions and
                 complaints.
                 <br /> We are constantly collecting and acting on our users
@@ -287,17 +288,33 @@ const Homepage = () => {
           </div>
         </div>
 
-        <AccordionList />
+        <div className='flex flex-col items-center my-20'>
+          <div className='text-center flex flex-col items-center mb-12'>
+            <div>
+              <img src={vaction} alt='' />
+            </div>
+            <h2 className='text-[50px] font-semibold my-3'>
+              Frequently Asked Questions
+            </h2>
+            <p className='text-[18px] font-medium text-secondaryColor'>
+              Everything you need to know about Turfind
+            </p>
+          </div>
+          <div className='w-[70%]'>
+
+          <AccordionList />
+          </div>
+        </div>
 
         <div className='px-20 mt-52 max-[500px]:px-0'>
           <div className='bg-primary200 rounded-[20px] w-full h-full flex items-center justify-between px-20 2xl:px-52 max-[500px]:px-2 max-[500px]:flex-col max-[500px]:py-10'>
             <img src={Google1a} />
             <div className='flex flex-col items-center w-[45%] max-[500px]:w-full max-[500px]:my-8'>
               <div>
-                <p className='text-[20px] font-medium text-primary300 my-2 text-center '>
+                <p className='text-[20px] font-medium text-primary300 my-2 text-center max-[500px]:text-[9px]'>
                   What are you waiting for ?
                 </p>
-                <h3 className='text-[40px] font-semibold my-2 text-center text-accentColor'>
+                <h3 className='text-[40px] font-semibold my-2 text-center text-accentColor max-[500px]:text-[17px]'>
                   Find the perfect home of your dreams now
                 </h3>
               </div>
@@ -314,6 +331,7 @@ const Homepage = () => {
           </div>
         </div>
       </div>
+      <Footer />
     </>
   )
 }

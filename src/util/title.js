@@ -19,5 +19,5 @@ export const getAccountTypeTitle = (location) => {
 }
 
 export const getCurrentColor = (location, path) => {
-  return location.pathname === path ? 'white' : '#303030'
+  return location.pathname.includes(path) ? 'white' : '#303030'
 }

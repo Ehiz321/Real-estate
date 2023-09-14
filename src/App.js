@@ -6,7 +6,7 @@ import { RouterProvider, createBrowserRouter } from 'react-router-dom'
 import { AppContextProvider } from './context/AppContext'
 
 function App({ router }) {
-  const [user, setUser] = useState('')
+  const [user, setUser] = useState('dd')
 
   return (
     <>

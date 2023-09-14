@@ -9,7 +9,7 @@ const SellerUploadHomes = () => {
   const navigate = useNavigate()
   return (
     <div className='mt-32 mb-10 pr-6'>
-      <div className='bg-white rounded-[20px] w-full  p-6'>
+      <div className='bg-white rounded-[20px] w-full p-6'>
         <div className='flex items-center'>
           <img
             src={arrowBack}
@@ -83,7 +83,7 @@ const SellerUploadHomes = () => {
             <div className='w-[25%]'>
               <Input
                 label={'Property Price'}
-                divClass={'-mt-0'}
+                divClass={'mt-0'}
                 className={'border-primary300 mt-1'}
               />
               <div className=' w-full'>

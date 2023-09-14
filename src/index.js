@@ -31,15 +31,20 @@ import NewPasswordPage from './pages/auth/NewPasswordPage';
 import Homepage from './pages/app/Homepage';
 import { AppContextProvider } from './context/AppContext';
 import AppLayout from './layout/AppLayout';
+import AboutUsPage from './pages/app/AboutUsPage';
+import ChattingScreen from './pages/app/dashboard/ChattingScreen';
 
  const router = createBrowserRouter([
    // false ? PrivateRoute() : {},
    // ...PublicRoute()
    {
-     path:'/',
+     path: '/',
      element: <AppLayout />,
      errorElement: <RootBoundary />,
-     children: [{ path: '/', element: <Homepage /> }],
+     children: [
+       { path: '/', element: <Homepage /> },
+       { path: '/about', element: <AboutUsPage /> },
+     ],
    },
    { path: '/account', element: <AccountTypePage /> },
    {
@@ -72,7 +77,7 @@ import AppLayout from './layout/AppLayout';
    {
      element: (
        <PrivateRoute>
-       <DashboardLayouPage />
+         <DashboardLayouPage />
        </PrivateRoute>
      ),
      children: [
@@ -86,6 +91,7 @@ import AppLayout from './layout/AppLayout';
          ],
        },
        { path: '/profile', element: <SellerProfile /> },
+       { path: '/chats', element: <ChattingScreen /> },
      ],
    },
 
