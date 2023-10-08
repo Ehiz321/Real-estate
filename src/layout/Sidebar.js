@@ -1,5 +1,6 @@
-import React from 'react'
+import React, { useContext, useState } from 'react'
 import { NavLink, useLocation } from 'react-router-dom'
+import axios from '../util/axios'
 import Logo from '../assets/icons/logo.svg'
 import profile from '../assets/images/user-profile.png'
 import DashboardIcon from '../components/icons/dashboard'
@@ -7,16 +8,37 @@ import HomeIcon from '../components/icons/home'
 import NotificationIcon from '../components/icons/notification'
 import ChatIcon from '../components/icons/chat'
 import { getCurrentColor } from '../util/title'
+import PrimaryButton from '../components/ui/PrimaryButton'
+import { toast } from 'react-toastify'
+import { AuthContext } from '../context/AuthContext'
 
 const Sidebar = () => {
   const location = useLocation()
-    function sidebarStyle({ isActive }) {
-      return {
-        backgroundColor: isActive ? '#008000' : '',
-        color: isActive ? 'white' : '',
-      }
+  const [isLoading, setIsLoading] = useState(false)
+  const { logout, currentUser } = useContext(AuthContext)
+  console.log(currentUser)
+  function sidebarStyle({ isActive }) {
+    return {
+      backgroundColor: isActive ? '#008000' : '',
+      color: isActive ? 'white' : '',
     }
-  console.log()
+  }
+
+  const logoutHandler = async () => {
+    setIsLoading(true)
+    try {
+      const response = await axios.post('/api/v1/auth/logout', {})
+      console.log(response.success)
+      if (response.success) {
+        logout()
+        toast.success(response?.message)
+      }
+    } catch (error) {
+      console.log(error)
+    } finally {
+      setIsLoading(false)
+    }
+  }
   return (
     <>
       <aside className='bg-white w-1/5 h-screen border-2 border-primary200 rounded-[20px] flex flex-col items-center py-4 px-8 justify-between'>
@@ -68,6 +90,14 @@ const Sidebar = () => {
                   <span className='ml-3'>Chats</span>
                 </NavLink>
               </li>
+              <PrimaryButton
+                onClick={() => logoutHandler()}
+                type={'button'}
+                className={'rounded-2xl'}
+                height={'h-12'}
+              >
+                {isLoading ? 'Logging Out user...' : 'Log out'}
+              </PrimaryButton>
             </ul>
           </nav>
         </div>

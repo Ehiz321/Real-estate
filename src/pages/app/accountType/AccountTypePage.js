@@ -1,12 +1,20 @@
-import React, { useState } from 'react'
+import React, { useContext, useState } from 'react'
+import axios from '../../../util/axios'
 import Logo from '../../../assets/icons/logo.svg'
 import PrimaryButton from '../../../components/ui/PrimaryButton'
 import individual from '../../../assets/icons/individual.svg'
 import estate from '../../../assets/icons/estate.svg'
 import company from '../../../assets/icons/company.svg'
+import { AuthContext } from '../../../context/AuthContext'
+import { useNavigate } from 'react-router-dom'
+import { toast } from 'react-toastify'
+import { USER_TYPE } from '../../../util/userType'
 
 const AccountTypePage = () => {
   const [selectedAccount, setSelectedAccount] = useState('')
+  const [isLoading, setIsLoading] = useState(false)
+  const { userId, currentUser } = useContext(AuthContext)
+  let navigate = useNavigate()
   const accountType = [
     {
       id: 1,
@@ -29,6 +37,36 @@ const AccountTypePage = () => {
     setSelectedAccount(enteredAccount)
   }
 
+  const registerSellerHandler = async (e) => {
+    e.preventDefault()
+    console.log('yes')
+      if (!selectedAccount) {
+        toast.error('Please select a seller type')
+        return false
+      }
+    setIsLoading(true)
+    try {
+      const response = await axios.post(`/api/v1/user/reqseller/${userId}`, {
+        account_type: selectedAccount.toLocaleLowerCase(),
+      })
+      if (response.status) {
+        if (currentUser.account_type === USER_TYPE.INDIVIDUAL) {
+          navigate('/accounts/individual')
+          return
+        } else if (currentUser.account_type === USER_TYPE.ESTATE) {
+          navigate('/accounts/estate')
+          return
+        } else if (currentUser.account_type === USER_TYPE.COMPANY) {
+          navigate('/accounts/company')
+          return
+        }
+      }
+    } catch (error) {
+      console.log(error)
+    } finally {
+      setIsLoading(false)
+    }
+  }
 
   return (
     <>
@@ -39,7 +77,10 @@ const AccountTypePage = () => {
             Select Account Type
           </h3>
         </div>
-        <form className='flex flex-col items-center justify-between h-1/2 mt-10 w-2/3 max-[500px]:h-full max-[500px]:w-full '>
+        <form
+          onSubmit={registerSellerHandler}
+          className='flex flex-col items-center justify-between h-1/2 mt-10 w-2/3 max-[500px]:h-full max-[500px]:w-full '
+        >
           <div className='flex flex-wrap justify-between w-full max-[500px]:h-full max-[500px]:items-center max-[500px]:justify-center max-[500px]:mb-4'>
             {accountType.map((account, index) => {
               return (
@@ -65,11 +106,12 @@ const AccountTypePage = () => {
           </div>
 
           <div className='w-[30%]'>
-          <PrimaryButton
-            className={'rounded-3xl max-[500px]:h-16 max-[500px]:my-7'}
-          >
-            Next
-          </PrimaryButton>
+            <PrimaryButton
+              type={'submit'}
+              className={'rounded-3xl max-[500px]:h-16 max-[500px]:my-7'}
+            >
+              {isLoading? 'Loading....' : 'Next'}
+            </PrimaryButton>
           </div>
         </form>
       </div>

@@ -48,3 +48,7 @@ p.continue::before {
   height: 1px;
   background-color: #808080;
 }
+
+.phone{
+  background-color: orange;
+}

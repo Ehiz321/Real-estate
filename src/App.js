@@ -4,18 +4,23 @@ import ConditionalBar from './components/ConditionalBar'
 import { useLocation } from 'react-router-dom'
 import { RouterProvider, createBrowserRouter } from 'react-router-dom'
 import { AppContextProvider } from './context/AppContext'
+import { AuthContextProvider } from './context/AuthContext'
 
 function App({ router }) {
   const [user, setUser] = useState('dd')
 
   return (
     <>
-      <AppContextProvider value={{
-        user,
-        setUser
-      }}>
-        <RouterProvider router={router} />
-      </AppContextProvider>
+      <AuthContextProvider>
+        <AppContextProvider
+          value={{
+            user,
+            setUser,
+          }}
+        >
+          <RouterProvider router={router} />
+        </AppContextProvider>
+      </AuthContextProvider>
     </>
   )
 }

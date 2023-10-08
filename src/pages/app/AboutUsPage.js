@@ -3,6 +3,7 @@ import seun from '../../assets/images/seun.jpeg'
 import godwin from '../../assets/images/godwin.png'
 import irene from '../../assets/images/irene.jpeg'
 import jeho from '../../assets/images/jeho.PNG'
+import Footer from '../../layout/Footer'
 
 const AboutUsPage = () => {
   return (
@@ -144,6 +145,7 @@ const AboutUsPage = () => {
           </div>
         </div>
       </div>
+      <Footer/>
     </>
   )
 }

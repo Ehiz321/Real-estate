@@ -1,5 +1,5 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import appleStore from '../../assets/icons/apple-store.svg'
 import googleStore from '../../assets/icons/google-store.svg'
 import group1 from '../../assets/images/group1.png'
@@ -23,6 +23,8 @@ import TextField from '../../components/ui/TextField'
 import AccordionList from '../../components/ui/AccordionList'
 import Footer from '../../layout/Footer'
 const Homepage = () => {
+  let navigate = useNavigate()
+
   return (
     <>
       <div className='mb-16'>
@@ -198,8 +200,9 @@ const Homepage = () => {
                   </li>
                 </ul>
                 <PrimaryButton
-                  width={'w-52 max-[500px]:w-20'}
-                  className={'max-[500px]:text-[12px]'}
+                  width={'w-52 max-[500px]:w-28'}
+                  className={'max-[500px]:text-[10px] rounded-xl'}
+                  onClick={() => navigate('/account')}
                 >
                   Get Started
                 </PrimaryButton>
@@ -264,14 +267,14 @@ const Homepage = () => {
               </p>
             </div>
             <form className='w-[80%] flex flex-col items-center max-[500px]:w-full max-[500px]:px-5'>
-              <Input label={'Full name'} />
-              <Input label={'Email'} />
+              <Input label={'Full name'} className={'mt-4'} divClass={'mt-5'} />
+              <Input label={'Email'} className={'mt-4'} divClass={'mt-5'} />
               <TextField
                 label={'Message'}
                 className={'mt-4'}
                 divClass={'mt-5'}
               />
-              <PrimaryButton width={'w-[30%]'} className={'my-9'}>
+              <PrimaryButton width={'w-[30%]'} className={'my-9 rounded-xl'}>
                 Submit
               </PrimaryButton>
             </form>
@@ -301,8 +304,7 @@ const Homepage = () => {
             </p>
           </div>
           <div className='w-[70%]'>
-
-          <AccordionList />
+            <AccordionList />
           </div>
         </div>
 
